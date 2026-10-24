@@ -45,15 +45,13 @@
     .section {
       margin-bottom: 2.5rem;
     }
-    .video-placeholder {
-      background: #e0e0e0;
-      height: 200px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #555;
+    .video {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000;
       border-radius: 8px;
-      font-size: 1.2rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
     footer {
       background: #104662;
@@ -97,7 +95,10 @@
 
   <div class="section">
     <h3>Video de Presentación</h3>
-    <div class="video-placeholder">📽️ Video próximamente</div>
+    <video class="video" controls preload="metadata" poster="assets/pantalla.png">
+      <source src="assets/video/dceo_recorrido.mp4" type="video/mp4" />
+      Tu navegador no soporta video HTML5.
+    </video>
   </div>
 
  
