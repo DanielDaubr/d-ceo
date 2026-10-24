@@ -5,107 +5,337 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>D-Ceo | Construyendo Líderes</title>
   <style>
+    :root {
+      --navy: #0b3347;
+      --primary: #104662;
+      --accent: #2a9d8f;
+      --accent-soft: #e6f4f2;
+      --text: #1b2a35;
+      --muted: #5b6b77;
+      --bg: #ffffff;
+      --surface: #f4f7fa;
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(11, 51, 71, 0.12);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #f7f9fc;
-      color: #333;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
     }
-    header {
-      background: #104662;
+    a { color: var(--primary); }
+
+    /* Navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(11, 51, 71, 0.92);
+      backdrop-filter: blur(8px);
+    }
+    nav .bar {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0.9rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    nav .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
       color: white;
-      text-align: center;
-      padding: 2rem 1rem;
+      font-weight: 600;
+      text-decoration: none;
     }
-    header img {
-      max-width: 120px;
-    }
-    h1 {
-      margin: 0.5rem 0 0.2rem;
-      font-size: 2rem;
-    }
-    h2 {
+    nav .brand img { width: 34px; }
+    nav ul {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
       margin: 0;
-      font-weight: normal;
+      padding: 0;
     }
-    .content {
-      padding: 2rem 1rem;
-      max-width: 800px;
-      margin: auto;
+    nav ul a {
+      color: rgba(255, 255, 255, 0.85);
+      text-decoration: none;
+      font-size: 0.92rem;
     }
-    .image {
-      text-align: center;
-      margin: 2rem 0;
+    nav ul a:hover { color: white; }
+
+    /* Hero */
+    .hero {
+      background: radial-gradient(circle at 80% 20%, #1a6a80 0%, var(--navy) 55%);
+      color: white;
+      padding: 5rem 1.5rem 6rem;
     }
-    .image img {
-      max-width: 100%;
+    .hero-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .eyebrow {
+      display: inline-block;
+      background: rgba(42, 157, 143, 0.2);
+      color: #7fe0d3;
+      padding: 0.35rem 0.8rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 {
+      margin: 0 0 1rem;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    .hero p {
+      margin: 0 0 2rem;
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.82);
+      max-width: 36ch;
+    }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 1.5rem;
+      border-radius: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+    .btn-primary:hover { background: #238a7e; }
+    .btn-ghost {
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      color: white;
+    }
+    .hero-image img {
+      display: block;
+      width: 100%;
+      border-radius: var(--radius);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    /* Sections */
+    section { padding: 5rem 1.5rem; }
+    .wrap { max-width: 1120px; margin: 0 auto; }
+    .section-title {
+      margin: 0 0 0.6rem;
+      font-size: clamp(1.6rem, 3vw, 2.1rem);
+      color: var(--navy);
+      letter-spacing: -0.01em;
+    }
+    .section-lead {
+      margin: 0 0 2.5rem;
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 60ch;
+    }
+
+    .innovation { background: var(--surface); }
+    .innovation .card {
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2.5rem;
+      border-left: 6px solid var(--accent);
+    }
+    .innovation p {
+      margin: 0;
+      font-size: 1.15rem;
+      color: var(--text);
+      max-width: 70ch;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .about-grid p {
+      color: var(--muted);
+      font-size: 1.1rem;
+      margin: 0;
+    }
+    .about-grid h2 { margin-top: 0; }
+
+    .steps {
+      list-style: none;
+      counter-reset: step;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+    .steps li {
+      counter-increment: step;
+      background: white;
+      border: 1px solid #e3e9ef;
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      color: var(--muted);
+      position: relative;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .steps li:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+    .steps li::before {
+      content: counter(step, decimal-leading-zero);
+      display: block;
+      width: fit-content;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 0.3rem 0.7rem;
       border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-    .section {
-      margin-bottom: 2.5rem;
+
+    .video-section {
+      background: var(--navy);
+      color: white;
+    }
+    .video-section .section-title { color: white; }
+    .video-section .section-lead { color: rgba(255, 255, 255, 0.7); }
+    .video-frame {
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+      background: #000;
     }
     .video {
       display: block;
       width: 100%;
       aspect-ratio: 16 / 9;
-      background: #000;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
+
     footer {
-      background: #104662;
-      color: white;
+      background: #071f2c;
+      color: rgba(255, 255, 255, 0.7);
       text-align: center;
-      padding: 1.5rem 1rem;
-      font-size: 0.9rem;
+      padding: 2rem 1rem;
+      font-size: 0.92rem;
     }
-    a.button {
-      background: #104662;
-      color: white;
-      text-decoration: none;
-      padding: 0.75rem 1.5rem;
-      border-radius: 5px;
-      display: inline-block;
-      margin-top: 1rem;
+    footer a { color: #7fe0d3; }
+
+    @media (max-width: 900px) {
+      .hero-inner,
+      .about-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      nav ul { display: none; }
+      section { padding: 3.5rem 1.25rem; }
+      .hero { padding: 3.5rem 1.25rem 4rem; }
+      .innovation .card { padding: 1.5rem; }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <img src="assets/logo.png" alt="Logo D-Ceo" />
-  <h2>Construyendo Líderes</h2>
+<nav>
+  <div class="bar">
+    <a class="brand" href="#inicio">
+      <img src="assets/logo.png" alt="Logo D-Ceo" />
+      D-Ceo
+    </a>
+    <ul>
+      <li><a href="#que-es">Qué es</a></li>
+      <li><a href="#innovador">Innovación</a></li>
+      <li><a href="#quienes">Quiénes somos</a></li>
+      <li><a href="#como">Cómo lo hacemos</a></li>
+      <li><a href="#video">Video</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="inicio">
+  <div class="hero-inner">
+    <div>
+      <span class="eyebrow">Construyendo Líderes</span>
+      <h1>¿Qué es D-Ceo?</h1>
+      <p>D-Ceo es un simulador empresarial competitivo diseñado para que estudiantes tomen decisiones como CEOs: eligen ubicaciones, maquinaria, estrategias comerciales y enfrentan un mercado dinámico simulado por inteligencia artificial.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#video">Ver el video</a>
+        <a class="btn btn-ghost" href="#como">Cómo funciona</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="assets/pantalla.png" alt="Pantalla del juego D-Ceo" />
+    </div>
+  </div>
 </header>
 
-<div class="content">
-  <div class="section">
-    <h3>¿Qué es D-Ceo?</h3>
-    <p>D-Ceo es un simulador empresarial competitivo diseñado para que estudiantes tomen decisiones como CEOs: eligen ubicaciones, maquinaria, estrategias comerciales y enfrentan un mercado dinámico simulado por inteligencia artificial.</p>
+<section class="innovation" id="innovador">
+  <div class="wrap">
+    <h2 class="section-title">¿Por qué es innovador?</h2>
+    <div class="card">
+      <p>Además de ser una herramienta educativa poderosa, D-Ceo permite que empresas reales patrocinen el juego y observen el desempeño de los estudiantes, funcionando como una plataforma de reclutamiento y formación de nuevos talentos.</p>
+    </div>
   </div>
+</section>
 
-  <div class="image">
-    <img src="assets/pantalla.png" alt="Pantalla del juego D-Ceo" />
+<section id="quienes">
+  <div class="wrap about-grid">
+    <div>
+      <h2 class="section-title">¿Quiénes somos?</h2>
+    </div>
+    <p>D-Ceo es un simulador empresarial competitivo que conecta la formación universitaria con la práctica. Los estudiantes dirigen su propia empresa virtual y las empresas patrocinadoras pueden seguir su desempeño.</p>
   </div>
+</section>
 
-  <div class="section">
-    <h3>¿Por qué es innovador?</h3>
-    <p>Además de ser una herramienta educativa poderosa, D-Ceo permite que empresas reales patrocinen el juego y observen el desempeño de los estudiantes, funcionando como una plataforma de reclutamiento y formación de nuevos talentos.</p>
+<section id="como" style="padding-top: 0;">
+  <div class="wrap">
+    <h2 class="section-title">¿Cómo lo hacemos?</h2>
+    <ol class="steps">
+      <li>Cada competencia parte de una ciudad y un tema generados con inteligencia artificial y revisados antes de publicarse.</li>
+      <li>Cada ronda equivale a un trimestre. Los participantes toman decisiones semanales sobre ubicación, maquinaria y estrategia comercial.</li>
+      <li>Compiten contra cuatro empresas IA y entre ellos, con un puntaje por ronda que mide mercado, valor, rentabilidad, clientes, personas, innovación, finanzas y responsabilidad social.</li>
+    </ol>
   </div>
+</section>
 
-  <div class="section">
-    <h3>Video de Presentación</h3>
-    <video class="video" controls preload="metadata" poster="assets/pantalla.png">
-      <source src="assets/video/dceo_recorrido.mp4" type="video/mp4" />
-      Tu navegador no soporta video HTML5.
-    </video>
+<section class="video-section" id="video">
+  <div class="wrap">
+    <h2 class="section-title">Video de Presentación</h2>
+    <div class="video-frame">
+      <video class="video" controls preload="metadata" poster="assets/pantalla.png">
+        <source src="assets/video/dceo_recorrido.mp4" type="video/mp4" />
+        Tu navegador no soporta video HTML5.
+      </video>
+    </div>
   </div>
-
- 
-</div>
+</section>
 
 <footer>
-  Contacto: <a href="mailto:danieldaubr@gmail.com" style="color:white;">danieldaubr@gmail.com</a>
+  Contacto: <a href="mailto:danieldaubr@gmail.com">danieldaubr@gmail.com</a>
 </footer>
 
 </body>
